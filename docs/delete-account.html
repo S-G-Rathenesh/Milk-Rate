@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Deletion Request – Milk Rate</title>
+  <style>
+    :root {
+      --primary: #15803D;
+      --primary-light: #DCFCE7;
+      --primary-dark: #166534;
+      --text-main: #1F2937;
+      --text-muted: #4B5563;
+      --bg-page: #F9FAFB;
+      --bg-card: #FFFFFF;
+      --border: #E5E7EB;
+      --badge-bg: #FEF3C7;
+      --badge-text: #92400E;
+      --alert-bg: #FEE2E2;
+      --alert-text: #991B1B;
+      --alert-border: #F87171;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary: #22C55E;
+        --primary-light: #064E3B;
+        --primary-dark: #15803D;
+        --text-main: #F3F4F6;
+        --text-muted: #9CA3AF;
+        --bg-page: #111827;
+        --bg-card: #1F2937;
+        --border: #374151;
+        --badge-bg: #78350F;
+        --badge-text: #FDE68A;
+        --alert-bg: #7F1D1D;
+        --alert-text: #FCA5A5;
+        --alert-border: #EF4444;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      color: var(--text-main);
+      background-color: var(--bg-page);
+      padding: 24px 16px;
+    }
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 32px 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+    @media (min-width: 640px) {
+      body {
+        padding: 40px 20px;
+      }
+      .container {
+        padding: 48px;
+      }
+    }
+    .header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 9999px;
+    }
+    .lang-switcher {
+      display: flex;
+      background: var(--bg-page);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .lang-btn {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      color: #FFFFFF;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+    }
+    @media (min-width: 640px) {
+      h1 {
+        font-size: 30px;
+      }
+    }
+    .meta {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+    p {
+      margin-bottom: 14px;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+    strong {
+      color: var(--text-main);
+    }
+    .callout {
+      background: var(--bg-page);
+      border-left: 4px solid var(--primary);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 18px 0;
+    }
+    .callout-alert {
+      background: var(--alert-bg);
+      border-left: 4px solid var(--alert-border);
+      color: var(--alert-text);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 18px 0;
+    }
+    .callout-alert p, .callout-alert strong {
+      color: var(--alert-text);
+    }
+    .btn-action {
+      display: inline-block;
+      background: var(--primary);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      transition: background 0.2s ease;
+    }
+    .btn-action:hover {
+      background: var(--primary-dark);
+    }
+    .email-template {
+      background: var(--bg-page);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 13.5px;
+      color: var(--text-main);
+      white-space: pre-wrap;
+      margin: 14px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+    th {
+      background: var(--bg-page);
+      color: var(--text-main);
+      font-weight: 600;
+    }
+    td {
+      color: var(--text-muted);
+    }
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+    .footer {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      margin-top: 40px;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .lang-section {
+      display: none;
+    }
+    .lang-section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-top">
+        <span class="brand-tag">Milk Rate – Google Play Compliance</span>
+        <div class="lang-switcher">
+          <button type="button" class="lang-btn active" id="btn-en" onclick="setLanguage('en')">English</button>
+          <button type="button" class="lang-btn" id="btn-ta" onclick="setLanguage('ta')">தமிழ் (Tamil)</button>
+        </div>
+      </div>
+      <div>
+        <h1 id="page-title">Account Deletion & Data Removal Request</h1>
+        <p class="meta">Application: Milk Rate for Android &nbsp;|&nbsp; Last Updated: November 8, 2026</p>
+      </div>
+    </header>
+
+    <!-- ==================== ENGLISH SECTION ==================== -->
+    <main id="section-en" class="lang-section active">
+      <div class="callout">
+        <p><strong>Google Play User Data Transparency Notice:</strong></p>
+        <p>
+          In accordance with Google Play's User Data & Account Deletion policies, this page provides clear instructions on how users of the <strong>Milk Rate</strong> mobile application (package <code>com.milkrate.app</code>) can request the permanent deletion of their account credentials and personal identifying information.
+        </p>
+      </div>
+
+      <section>
+        <h2>1. Overview of Account Structure</h2>
+        <p>Milk Rate serves two distinct types of users:</p>
+        <ul>
+          <li><strong>Milk Sellers (Vendors):</strong> Vendors who sign in via Google Sign-In (Firebase Authentication) to maintain customer registers, daily milk quantities, pricing rules, and monthly billing totals.</li>
+          <li><strong>Customers (Households):</strong> Customers who access their daily milk delivery receipts by scanning a secure QR code invitation provided by their local milk vendor, without needing a separate login password.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>2. How to Request Account & Data Deletion</h2>
+        <p>
+          Because Milk Rate protects commercial delivery records against accidental deletion, the application <strong>does not provide an automated self-service account wipe button</strong> inside the client UI.
+        </p>
+        <p>
+          All account deletion requests are <strong>reviewed and processed manually</strong> by the developer administration within <strong>30 calendar days</strong>.
+        </p>
+
+        <h3>A. For Milk Sellers (Vendors)</h3>
+        <p>To request permanent deletion of your vendor account:</p>
+        <ol>
+          <li>Send an email to the developer at <a href="mailto:ratheneshsg@gmail.com?subject=Milk%20Rate%20-%20Seller%20Account%20Deletion%20Request">ratheneshsg@gmail.com</a> from the Google Account associated with your seller profile.</li>
+          <li>Include the following information in your request:
+            <ul>
+              <li><strong>Registered Email:</strong> Your Google Sign-In email address</li>
+              <li><strong>Dairy / Business Name:</strong> The business display name configured in the app</li>
+              <li><strong>Registered Phone Number:</strong> Contact number linked to your profile</li>
+              <li><strong>Confirmation:</strong> A clear statement confirming you wish to permanently delete your seller profile and cloud database record.</li>
+            </ul>
+          </li>
+          <li>Once identity is validated, your Firebase Authentication identity, cloud Firestore seller document (<code>/sellers/{uid}</code>), and active invitation links will be permanently deleted.</li>
+        </ol>
+
+        <h3>B. For Customers</h3>
+        <p>If you are a customer receiving milk delivery updates:</p>
+        <ul>
+          <li><strong>Option 1 (Direct with Vendor):</strong> You can contact your milk vendor directly and ask them to remove your profile from their customer directory. This immediately disconnects your profile and revokes all active QR access tokens.</li>
+          <li><strong>Option 2 (Central Developer Request):</strong> Send an email to <a href="mailto:ratheneshsg@gmail.com?subject=Milk%20Rate%20-%20Customer%20Data%20Deletion%20Request">ratheneshsg@gmail.com</a> specifying your name, mobile phone number, and the name of your milk vendor. The developer will coordinate with the vendor record to permanently scrub your personal data.</li>
+        </ul>
+
+        <div class="callout-alert">
+          <strong>Important Clarification: Customer Deactivation vs. Permanent Deletion</strong>
+          <p>
+            When a milk vendor marks a customer as <em>"Deactivated"</em> inside the seller app, customer login access and advertising are suspended, but previous transaction logs remain intact for billing reconciliation. Deactivation is <strong>not</strong> permanent deletion. If you desire complete data erasure, an explicit deletion request must be submitted as described above.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>3. Data Deletion & Retention Schedule</h2>
+        <p>
+          To maintain financial integrity and comply with accounting guidelines in India, certain numerical audit data must be retained:
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Data Category</th>
+              <th>Action on Deletion Request</th>
+              <th>Retention Period & Justification</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Account Credentials</strong><br>(Google OAuth UID, Firebase Auth token)</td>
+              <td>Permanently deleted</td>
+              <td>Immediate removal upon processing (within 30 days).</td>
+            </tr>
+            <tr>
+              <td><strong>Personal Profile Data</strong><br>(Seller Name, Dairy Name, Phone, Email, Customer Names)</td>
+              <td>Permanently deleted</td>
+              <td>Purged from cloud database (Firestore) and cache within 30 days.</td>
+            </tr>
+            <tr>
+              <td><strong>Invitation Codes & QR Tokens</strong></td>
+              <td>Permanently revoked & deleted</td>
+              <td>Invalidated immediately; prevents any future access.</td>
+            </tr>
+            <tr>
+              <td><strong>Historical Delivery & Billing Ledger</strong><br>(Delivery dates, sessions, quantities, rates, settlement status)</td>
+              <td>Anonymized & Retained on vendor ledger</td>
+              <td>
+                Retained as numeric accounting records for up to 7 years in accordance with commercial bookkeeping and tax/audit requirements. All personal identifying names and phone numbers are stripped or replaced with anonymized placeholders (e.g., <code>[Deleted Customer]</code>).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>4. Submit a Deletion Request</h2>
+        <p>Click the button below to initiate an email request using your default mail app, or copy the template below:</p>
+        
+        <p>
+          <a class="btn-action" href="mailto:ratheneshsg@gmail.com?subject=Milk%20Rate%20-%20Account%20Deletion%20Request&body=To%3A%20Milk%20Rate%20Support%0A%0AI%20am%20requesting%20the%20permanent%20deletion%20of%20my%20account%20and%20personal%20data%20from%20Milk%20Rate.%0A%0AMy%20Role%20(Seller%2FCustomer)%3A%20%0ARegistered%20Email%20(if%20Seller)%3A%20%0ADairy%2FBusiness%20Name%3A%20%0APhone%20Number%3A%20%0AReason%20(optional)%3A%20%0A%0APlease%20confirm%20once%20my%20account%20has%20been%20deleted.">
+            ✉️ Email Deletion Request
+          </a>
+        </p>
+
+        <div class="email-template">To: ratheneshsg@gmail.com
+Subject: Milk Rate - Account Deletion Request
+
+I am requesting the permanent deletion of my account and personal data from Milk Rate.
+
+- User Role: [Milk Seller / Customer]
+- Registered Google Email (for Sellers): [your-email@gmail.com]
+- Dairy / Business Name: [Your Dairy Name]
+- Contact Phone Number: [Your 10-digit number]
+- Additional Notes: [Optional]
+
+I understand that historical delivery ledger quantities will be retained in an anonymized format for accounting and billing dispute resolution.</div>
+      </section>
+
+      <section>
+        <h2>5. Developer Contact & Support</h2>
+        <div class="callout">
+          <p><strong>Developer:</strong> Rathenesh S G</p>
+          <p><strong>Official Support Email:</strong> <a href="mailto:ratheneshsg@gmail.com">ratheneshsg@gmail.com</a></p>
+          <p><strong>Privacy Policy:</strong> <a href="privacy-policy.html">Milk Rate Privacy Policy</a></p>
+          <p><strong>Repository & Issue Tracker:</strong> <a href="https://github.com/S-G-Rathenesh/Milk-Rate" target="_blank" rel="noopener">https://github.com/S-G-Rathenesh/Milk-Rate</a></p>
+          <p><strong>Response Timeframe:</strong> Deletion requests are acknowledged within 48 hours and completed within 30 days.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================== TAMIL SECTION (தமிழ்) ==================== -->
+    <main id="section-ta" class="lang-section">
+      <div class="callout">
+        <p><strong>கூகிள் பிளே பயனர் தரவு பாதுகாப்பு கொள்கை அறிவிப்பு:</strong></p>
+        <p>
+          கூகிள் பிளே கொள்கைகளின்படி, <strong>Milk Rate</strong> (<code>com.milkrate.app</code>) செயலியைப் பயன்படுத்தும் பயனர்கள் தங்களது கணக்கு மற்றும் தனிப்பட்ட தரவுகளை நிரந்தரமாக நீக்கக் கோருவதற்கான வழிமுறைகள் கீழே தெளிவாகத் தரப்பட்டுள்ளன.
+        </p>
+      </div>
+
+      <section>
+        <h2>1. கணக்கு அமைப்பின் விளக்கம்</h2>
+        <p>Milk Rate செயலி இரண்டு வகையான பயனர்களைக் கொண்டுள்ளது:</p>
+        <ul>
+          <li><strong>பால் வியாபாரிகள் (Milk Sellers):</strong> கூகிள் உள்நுழைவு (Google Sign-In) மூலம் கணக்கு தொடங்கி, வாடிக்கையாளர்கள் பட்டியல், தினசரி பால் அளவுகள் மற்றும் மாதக் கட்டணக் கணக்குகளை நிர்வகிப்பவர்கள்.</li>
+          <li><strong>வாடிக்கையாளர்கள் (Customers):</strong> வியாபாரி தரும் QR குறியீட்டை ஸ்கேன் செய்து, எந்தவித கடவுச்சொல்லும் இன்றி தங்களின் தினசரி பால் வரவு மற்றும் மாதாந்திர கட்டண விவரங்களை மட்டும் பார்ப்பவர்கள்.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>2. கணக்கு மற்றும் தரவு நீக்கம் கோருவது எப்படி?</h2>
+        <p>
+          வியாபார கணக்குகள் மற்றும் நிதி பதிவுகளின் பாதுகாப்பிற்காக, செயலியில் <strong>உடனடி தன்னிச்சை நீக்கல் பொத்தான் (automated deletion button) அமைக்கப்படவில்லை</strong>.
+        </p>
+        <p>
+          அனைத்து கணக்கு நீக்கல் கோரிக்கைகளும் நிர்வாகியால் சரிபார்க்கப்பட்டு <strong>30 நாட்களுக்குள் கைமுறையாக (manual processing)</strong> முழுமையாக நிறைவேற்றப்படும்.
+        </p>
+
+        <h3>அ. பால் வியாபாரிகளுக்கு (Milk Sellers)</h3>
+        <p>உங்கள் வியாபார கணக்கை நிரந்தரமாக நீக்க:</p>
+        <ol>
+          <li>செயலியில் பதிவுசெய்த உங்கள் கூகிள் மின்னஞ்சல் வழியாக <a href="mailto:ratheneshsg@gmail.com?subject=Milk%20Rate%20-%20Seller%20Account%20Deletion%20Request">ratheneshsg@gmail.com</a> என்ற முகவரிக்கு மின்னஞ்சல் அனுப்பவும்.</li>
+          <li>மின்னஞ்சலில் பின்வரும் விவரங்களைக் குறிப்பிடவும்:
+            <ul>
+              <li><strong>பதிவுசெய்த மின்னஞ்சல்:</strong> Google Sign-In Email</li>
+              <li><strong>பண்ணை / வியாபார பெயர்:</strong> Dairy / Business Name</li>
+              <li><strong>தொலைபேசி எண்:</strong> பதிவு செய்யப்பட்ட அலைபேசி எண்</li>
+              <li><strong>கோரிக்கை உறுதிப்படுத்தல்:</strong> கணக்கை நிரந்தரமாக நீக்க விரும்புகிறேன் என்ற உறுதிமொழி.</li>
+            </ul>
+          </li>
+          <li>சரிபார்ப்பிற்குப் பிறகு, உங்கள் Firebase Authentication, Firestore மேகக்கணி தரவு (<code>/sellers/{uid}</code>) மற்றும் அழைப்பு இணைப்புகள் நிரந்தரமாக அழிக்கப்படும்.</li>
+        </ol>
+
+        <h3>ஆ. வாடிக்கையாளர்களுக்கு (Customers)</h3>
+        <p>நீங்கள் பால் வாங்கும் வாடிக்கையாளராக இருந்தால்:</p>
+        <ul>
+          <li><strong>முறை 1 (நேரடியாக வியாபாரியிடம்):</strong> உங்கள் பால் வியாபாரியைத் தொடர்புகொண்டு, அவரது வாடிக்கையாளர் பட்டியலில் இருந்து உங்கள் பெயரை நீக்குமாறு கோரலாம். இதன்மூலம் உங்கள் சுயவிவரம் மற்றும் QR இணைப்பு உடனடியாக ரத்து செய்யப்படும்.</li>
+          <li><strong>முறை 2 (நிர்வாகி மின்னஞ்சல்):</strong> உங்கள் பெயர், அலைபேசி எண் மற்றும் பால் பண்ணையின் பெயரைக் குறிப்பிட்டு <a href="mailto:ratheneshsg@gmail.com?subject=Milk%20Rate%20-%20Customer%20Data%20Deletion%20Request">ratheneshsg@gmail.com</a> முகவரிக்கு மின்னஞ்சல் அனுப்பலாம்.</li>
+        </ul>
+
+        <div class="callout-alert">
+          <strong>முக்கிய அறிவிப்பு: தற்காலிக செயலிழப்பு (Deactivation) vs நிரந்தர நீக்கம்</strong>
+          <p>
+            வியாபாரி ஒரு வாடிக்கையாளரை "செயலிழக்க" (Deactivate) செய்யும்போது, வாடிக்கையாளரின் உள்நுழைவு மற்றும் விளம்பரங்கள் மட்டுமே முடக்கப்படும். பழைய கணக்கு விவரங்கள் பாதுகாப்பாக இருக்கும். இது நிரந்தர நீக்கம் அல்ல. உங்கள் விவரங்கள் முழுமையாக நீக்கப்பட வேண்டும் என்றால், மேலே குறிப்பிட்டபடி நீக்கல் கோரிக்கை அனுப்ப வேண்டும்.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>3. என்ன தரவுகள் நீக்கப்படும்? எவை தக்கவைக்கப்படும்?</h2>
+        <p>
+          இந்திய வணிக மற்றும் கணக்கியல் சட்டங்களின்படி, நிதி தணிக்கைக்காக சில எண்சார்ந்த கணக்கு விவரங்கள் தக்கவைக்கப்பட வேண்டும்:
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>தரவு வகை</th>
+              <th>நீக்கல் கோரிக்கையின் போது நடவடிக்கை</th>
+              <th>தக்கவைப்பு காலம் & காரணம்</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>உள்நுழைவு விவரங்கள்</strong><br>(Google OAuth UID, Firebase Auth token)</td>
+              <td>நிரந்தரமாக அழிக்கப்படும்</td>
+              <td>30 நாட்களுக்குள் உடனடியாக முழுமையாக நீக்கப்படும்.</td>
+            </tr>
+            <tr>
+              <td><strong>தனிப்பட்ட விவரங்கள்</strong><br>(வியாபாரி பெயர், பண்ணை பெயர், தொலைபேசி எண், மின்னஞ்சல், வாடிக்கையாளர் பெயர்கள்)</td>
+              <td>நிரந்தரமாக அழிக்கப்படும்</td>
+              <td>30 நாட்களுக்குள் மேகக்கணி (Firestore) மற்றும் சேமிப்பகத்திலிருந்து நீக்கப்படும்.</td>
+            </tr>
+            <tr>
+              <td><strong>அழைப்புக் குறியீடுகள் & QR Tokens</strong></td>
+              <td>முழுமையாக ரத்து செய்யப்பட்டு நீக்கப்படும்</td>
+              <td>இனி இந்த குறியீடுகள் மூலம் செயலியை அணுக முடியாது.</td>
+            </tr>
+            <tr>
+              <td><strong>வரவு-செலவு மற்றும் பால் வரவுப் பதிவுகள்</strong><br>(தேதிகள், காலை/மாலை அளவுகள், விலை, கட்டணத் தொகை)</td>
+              <td>பெயர்கள் நீக்கப்பட்டு, எண்களாக மட்டும் தக்கவைக்கப்படும் (Anonymized)</td>
+              <td>
+                வணிக கணக்கியல் மற்றும் வரி தணிக்கைக்காக (Tax/Audit compliance) அதிகபட்சம் 7 ஆண்டுகள் வரை பாதுகாப்பாக வைக்கப்படும். இதில் வாடிக்கையாளரின் பெயர் மற்றும் அலைபேசி எண்கள் அகற்றப்பட்டு வெறும் எண்களாக மட்டுமே சேமிக்கப்படும்.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>4. நீக்கல் கோரிக்கையை அனுப்ப</h2>
+        <p>கீழே உள்ள பொத்தானை அழுத்தி மின்னஞ்சல் அனுப்பலாம், அல்லது மாதிரியைப் பயன்படுத்தலாம்:</p>
+        
+        <p>
+          <a class="btn-action" href="mailto:ratheneshsg@gmail.com?subject=Milk%20Rate%20-%20Account%20Deletion%20Request&body=To%3A%20Milk%20Rate%20Support%0A%0AI%20am%20requesting%20the%20permanent%20deletion%20of%20my%20account%20and%20personal%20data%20from%20Milk%20Rate.%0A%0AMy%20Role%20(Seller%2FCustomer)%3A%20%0ARegistered%20Email%20(if%20Seller)%3A%20%0ADairy%2FBusiness%20Name%3A%20%0APhone%20Number%3A%20%0AReason%20(optional)%3A%20%0A%0APlease%20confirm%20once%20my%20account%20has%20been%20deleted.">
+            ✉️ நீக்கல் கோரிக்கை மின்னஞ்சல் அனுப்பவும்
+          </a>
+        </p>
+
+        <div class="email-template">பெறுநர்: ratheneshsg@gmail.com
+பொருள்: Milk Rate - Account Deletion Request
+
+வணக்கம், Milk Rate செயலியில் உள்ள எனது கணக்கு மற்றும் தனிப்பட்ட தரவுகளை நிரந்தரமாக நீக்கக் கோருகிறேன்.
+
+- பயனர் வகை: [பால் வியாபாரி / வாடிக்கையாளர்]
+- கூகிள் மின்னஞ்சல்: [உங்கள் மின்னஞ்சல்]
+- பண்ணை / வியாபார பெயர்: [பண்ணை பெயர்]
+- தொலைபேசி எண்: [10 இலக்க எண்]
+- கூடுதல் தகவல்: [விரும்பினால்]
+
+கணக்கு நீக்கப்பட்டவுடன் எனக்கு உறுதிப்படுத்தல் மின்னஞ்சல் அனுப்புமாறு கேட்டுக்கொள்கிறேன்.</div>
+      </section>
+
+      <section>
+        <h2>5. தொடர்பு விவரங்கள்</h2>
+        <div class="callout">
+          <p><strong>உருவாக்குநர்:</strong> இரத்னேஷ் எஸ் ஜி (Rathenesh S G)</p>
+          <p><strong>மின்னஞ்சல்:</strong> <a href="mailto:ratheneshsg@gmail.com">ratheneshsg@gmail.com</a></p>
+          <p><strong>தனியுரிமைக் கொள்கை (Privacy Policy):</strong> <a href="privacy-policy.html">Milk Rate Privacy Policy</a></p>
+          <p><strong>பதில் அளிக்கும் காலம்:</strong> கோரிக்கைகள் 48 மணி நேரத்திற்குள் ஏற்கப்பட்டு, 30 நாட்களுக்குள் முடிக்கப்படும்.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div>&copy; 2026 Milk Rate. All rights reserved.</div>
+      <div>
+        <a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp;
+        <a href="mailto:ratheneshsg@gmail.com">Contact Developer</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function setLanguage(lang) {
+      const enSection = document.getElementById('section-en');
+      const taSection = document.getElementById('section-ta');
+      const btnEn = document.getElementById('btn-en');
+      const btnTa = document.getElementById('btn-ta');
+      const pageTitle = document.getElementById('page-title');
+
+      if (lang === 'ta') {
+        enSection.classList.remove('active');
+        taSection.classList.add('active');
+        btnEn.classList.remove('active');
+        btnTa.classList.add('active');
+        pageTitle.textContent = 'கணக்கு நீக்கம் மற்றும் தரவு அழிப்பு கோரிக்கை';
+        document.documentElement.lang = 'ta';
+      } else {
+        taSection.classList.remove('active');
+        enSection.classList.add('active');
+        btnTa.classList.remove('active');
+        btnEn.classList.add('active');
+        pageTitle.textContent = 'Account Deletion & Data Removal Request';
+        document.documentElement.lang = 'en';
+      }
+    }
+  </script>
+</body>
+</html>
